@@ -94,19 +94,18 @@ const App = () => {
               <Route path="/signup" element={<Signup user={user} />} />
               <Route path="/adminShift" element={<Shift user={user} />} />
               <Route path="/EditUser/:id" element={<EditUser />} />
-              
             </Route>
           )}
 
           {/* Employee Routes */}
           {user && user.roleID === "3" && (
             <Route element={<AppLayoutEmployee />} >
-              <Route path="/homeemployee" element={<HomeEmployee user={user} />} />
+              <Route path="/homeEmployee" element={<HomeEmployee user={user} />} />
               <Route path="/employeeShift" element={<Shift user={user} />} />
             </Route>
           )}
 
-          {user && user.roleID === "2" && (
+{user && user.roleID === "2" && (
             <Route element={<AppLayoutManager />} >
               <Route path="/homemanager" element={<HomeManager />} />
               <Route path="/managerShift" element={<Shift user={user} />} />
@@ -142,6 +141,7 @@ const App = () => {
 
           {/* Fallback Route */}
           <Route path="*" element={<Login setUser={handleLogin} />} />
+        
         </Route>
       </Routes>
     </Router>

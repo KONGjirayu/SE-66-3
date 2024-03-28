@@ -13,8 +13,8 @@ const HomeAdmin = ({ user }) => {
                 if (!user) return; // ตรวจสอบว่า user มีค่าหรือไม่
 
 
-                const userResponse = await axios.get(`${process.env.REACT_APP_API_URL}/users/all`);
-                const filteredData = userResponse.data.filter(variable => variable.branchID === user.branchID);
+
+                const userResponse = await axios.get(`${process.env.REACT_APP_API_URL}/users/all`);                const filteredData = userResponse.data.filter(variable => variable.branchID === user.branchID);
                 setUsers(filteredData);
             } catch (error) {
                 console.error('Error fetching data: KONG JIEEAEAEAEAE', error);

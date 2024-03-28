@@ -39,6 +39,29 @@ const getAllUsersAndBranchAndRole = async (req, res) => {
   }
 };
 
+const getAllUsersAndBranchAndRole = async (req, res) => {
+  try {
+    // ดึงข้อมูลผู้ใช้ทั้งหมดจากฐานข้อมูล
+    const users = await User.findAll({
+      include: [
+        {
+          model: Branch,
+          attributes: ['branchID', 'branchName']
+        },
+        {
+          model: TypeRole,
+          attributes: ['roleID', 'roleName']
+        }
+      ]
+    });
+    // ส่งข้อมูลผู้ใช้กลับไปยัง client
+    res.status(200).json(users);
+  } catch (error) {
+    console.error('Error getting users:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
+
 
 // Controller สำหรับดึงข้อมูลผู้ใช้ ตามสาขาที่ตัวเองอยู่                  Cannot use    it error
 const getUserBranch = async (req, res) => {
